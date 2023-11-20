@@ -15,11 +15,13 @@ class Database{
             mongoose.set('debug', true);
             mongoose.set('debug', {color: true});
         }
-        mongoose.connect(connectString).then(()=> console.log("Connected to mongodb PRO"))
+        mongoose.connect(connectString, {
+            maxPoolSize: 50
+        }).then(()=> console.log("Connected to mongodb PRO"))
         .catch(err => console.log("Error connecting to mongodb"));
     }
     
-    static getInstance(){
+    static getInstance(){   
         if (!Database.instance){
             Database.instance = new Database();
         }

@@ -12,6 +12,10 @@ app.use(compression());
 //init db
 require('./dbs/init.mongodb')
 
+//check overload
+const {checkOverload} = require('./helpers/check.connect')
+checkOverload();
+
 //init routers
 app.use('/', (req, res, next)=>{
     const testCompression = "Hello world";
